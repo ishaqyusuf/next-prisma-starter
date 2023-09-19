@@ -1,9 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## School Management
-
-This is an open source school management system built with everything new in Next.js 13.
-
+## Nextjs Prisma Boilerplate
+  
 ## Tech Stack
 
 - **Framework:** [Next.js](https://nextjs.org)
