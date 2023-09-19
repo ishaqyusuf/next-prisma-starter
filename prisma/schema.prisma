@@ -11,73 +11,12 @@ datasource db {
 }
 
 model Users {
-  id           Int            @unique @default(autoincrement())
-  name         String
-  role         String?
-  meta         Json?          @db.Json
-  createdAt    DateTime?      @db.Timestamp(0)
-  updatedAt    DateTime?      @db.Timestamp(0)
-  Participants Participants[]
-  Payments     Payments[]
-  Payrolls     Payrolls[]
-}
-
-model ThriftCycle {
-  id           Int            @unique @default(autoincrement())
-  title        String //JUL-DEC 2023
-  createdAt    DateTime?      @db.Timestamp(0)
-  updatedAt    DateTime?      @db.Timestamp(0)
-  Participants Participants[]
-  MonthWallet  MonthWallets[]
-  Payrolls     Payrolls[]
-}
-
-model MonthWallets {
-  id            Int         @unique @default(autoincrement())
-  thriftCycleId Int
-  title         String //JUL
-  total         Float?
-  createdAt     DateTime?   @db.Timestamp(0)
-  updatedAt     DateTime?   @db.Timestamp(0)
-  Cycle         ThriftCycle @relation(fields: [thriftCycleId], references: [id])
-  Payments      Payments[]
-}
-
-model Participants {
-  id            Int         @unique @default(autoincrement())
-  userId        Int
-  thriftCycleId Int
-  amount        Float
-  createdAt     DateTime?   @db.Timestamp(0)
-  updatedAt     DateTime?   @db.Timestamp(0)
-  User          Users       @relation(fields: [userId], references: [id])
-  Cycle         ThriftCycle @relation(fields: [thriftCycleId], references: [id])
-}
-
-model Payments {
-  id            Int          @unique @default(autoincrement())
-  userId        Int
-  thriftCycleId Int
-  monthWalletId Int
-  paid          Float
-  payable       Float
-  createdAt     DateTime?    @db.Timestamp(0)
-  updatedAt     DateTime?    @db.Timestamp(0)
-  MonthWallet   MonthWallets @relation(fields: [monthWalletId], references: [id])
-  Users         Users?       @relation(fields: [userId], references: [id])
-}
-
-model Payrolls {
-  id            Int          @unique @default(autoincrement())
-  userId        Int
-  position      Int
-  payableAmount Float?
-  paid          Float?
-  pendingAmount Float?
-  thriftCycleId Int?
-  createdAt     DateTime?    @db.Timestamp(0)
-  updatedAt     DateTime?    @db.Timestamp(0)
-  paidAt        DateTime?    @db.Timestamp(0)
-  ThriftCycle   ThriftCycle? @relation(fields: [thriftCycleId], references: [id])
-  Users         Users        @relation(fields: [userId], references: [id])
+  id        Int       @unique @default(autoincrement())
+  name      String
+  role      String?
+  password  String?
+  email     String?
+  meta      Json?     @db.Json
+  createdAt DateTime? @db.Timestamp(0)
+  updatedAt DateTime? @db.Timestamp(0)
 }
