@@ -7,6 +7,7 @@ import { store } from '@/store';
 import { SonnerToaster } from '@/components/ui/sonner-toaster';
 import { Analytics } from "@vercel/analytics/react";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
+import AppProvider from '@/components/app-provider';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -22,9 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider>
-          <Provider store={store}>{children}</Provider>
-        </SessionProvider>
+        <AppProvider>
+         {children} 
+        </AppProvider>
         <SonnerToaster/>
          <Analytics />
          <TailwindIndicator />
